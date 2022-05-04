@@ -36,6 +36,17 @@ public class MovimentacaoModel implements Serializable {
 	@Column(nullable = false, name = "conta_saldo")
 	private Long idConta;
 	
+	
+	public MovimentacaoModel(LocalDateTime dataHora, String descricao, Double valor, MovimentacaoTipo movimentacaoTipo,
+			Long idConta) {
+		super();
+		this.dataHora = dataHora;
+		this.descricao = descricao;
+		this.valor = valor;
+		this.movimentacaoTipo = movimentacaoTipo;
+		this.idConta = idConta;
+	}
+
 	public Long getId() {
 		return id;
 	}

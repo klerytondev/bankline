@@ -16,17 +16,18 @@ public class CorrentistaModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String cpf;
-	
+
 	@Column(nullable = false, length = 100)
 	private String nome;
-	
+
 	private ContaModel contaModel;
-	
+
+	public CorrentistaModel() {
+	}
 
 	public CorrentistaModel(String cpf, String nome, ContaModel contaModel) {
-		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.contaModel = contaModel;

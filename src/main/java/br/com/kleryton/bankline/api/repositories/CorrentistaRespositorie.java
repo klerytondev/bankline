@@ -1,5 +1,9 @@
 package br.com.kleryton.bankline.api.repositories;
 
-public interface CorrentistaRespositorie {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.kleryton.bankline.api.models.CorrentistaModel;
+
+public interface CorrentistaRespositorie extends JpaRepository<CorrentistaModel, Long>{
 
 }
