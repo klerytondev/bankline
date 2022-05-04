@@ -18,25 +18,24 @@ import br.com.kleryton.bankline.api.enums.MovimentacaoTipo;
 @Table(name = "TB_MOVIMENTACAO")
 public class MovimentacaoModel implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false)
 	private LocalDateTime dataHora;
-	
+
 	@Column(nullable = false, length = 100)
 	private String descricao;
 	@Column(nullable = false)
 	private Double valor;
-	
+
 	@Enumerated(EnumType.STRING)
 	private MovimentacaoTipo movimentacaoTipo;
-	
+
 	@Column(nullable = false, name = "conta_saldo")
 	private Long idConta;
-	
-	
+
 	public MovimentacaoModel(LocalDateTime dataHora, String descricao, Double valor, MovimentacaoTipo movimentacaoTipo,
 			Long idConta) {
 		super();
@@ -50,22 +49,35 @@ public class MovimentacaoModel implements Serializable {
 	public Long getId() {
 		return id;
 	}
-	
+
+	public MovimentacaoTipo getMovimentacaoTipo() {
+		return movimentacaoTipo;
+	}
+
+	public void setMovimentacaoTipo(MovimentacaoTipo movimentacaoTipo) {
+		this.movimentacaoTipo = movimentacaoTipo;
+	}
+
 	public LocalDateTime getDataHora() {
 		return dataHora;
 	}
+
 	public void setDataHora(LocalDateTime dataHora) {
 		this.dataHora = dataHora;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public double getValor() {
 		return valor;
 	}
+
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
@@ -77,6 +89,5 @@ public class MovimentacaoModel implements Serializable {
 	public void setIdConta(Long idConta) {
 		this.idConta = idConta;
 	}
-	
-	
+
 }
