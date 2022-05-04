@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.kleryton.bankline.api.enums.MovimentacaoTipo;
+import br.com.kleryton.bankline.api.models.CorrentistaModel;
 import br.com.kleryton.bankline.api.models.MovimentacaoModel;
+import br.com.kleryton.bankline.api.repositories.CorrentistaRespositorie;
 import br.com.kleryton.bankline.api.repositories.MovimentacaoRespositorie;
 import br.com.kleryton.bankline.api.requestDto.MovimentacaoRequestDto;
 
@@ -19,6 +21,9 @@ public class MovimentacaoService {
 
 	@Autowired
 	private MovimentacaoRespositorie movimentacaoRespositorie;
+
+	@Autowired
+	private CorrentistaRespositorie correntistaRespositorie;
 
 	@Transactional
 	// Create correntista
@@ -29,6 +34,12 @@ public class MovimentacaoService {
 				: movimentacaoRequestDto.getValor() * -1;
 		movimentacaoModel.setDataHora(LocalDateTime.now());
 		movimentacaoModel.setValor(valor);
+		CorrentistaModel correntistaModel = correntistaRespositorie.findById(movimentacaoRequestDto.getIdConta())
+				.orElse(null);
+		if (correntistaModel != null) {
+			correntistaModel.getContaModel().setSaldo(correntistaModel.getContaModel().getSaldo() + valor);
+			correntistaRespositorie.save(correntistaModel);
+		}
 		movimentacaoRespositorie.save(movimentacaoModel);
 		return movimentacaoModel;
 	}
