@@ -1,6 +1,5 @@
 package br.com.kleryton.bankline.api.requestDto;
 
-import br.com.kleryton.bankline.api.models.ContaModel;
 import br.com.kleryton.bankline.api.models.CorrentistaModel;
 
 public class CorrentistaRequestDto {
@@ -9,12 +8,12 @@ public class CorrentistaRequestDto {
 
 	private String nome;
 
-	private ContaModel contaModel;
+	public CorrentistaRequestDto() {
+	}
 
 	public CorrentistaRequestDto(CorrentistaModel correntistaModel) {
 		this.cpf = correntistaModel.getCpf();
 		this.nome = correntistaModel.getNome();
-		this.contaModel = correntistaModel.getContaModel();
 	}
 
 	public String getCpf() {
@@ -31,14 +30,6 @@ public class CorrentistaRequestDto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public ContaModel getContaModel() {
-		return contaModel;
-	}
-
-	public void setContaModel(ContaModel contaModel) {
-		this.contaModel = contaModel;
 	}
 
 }

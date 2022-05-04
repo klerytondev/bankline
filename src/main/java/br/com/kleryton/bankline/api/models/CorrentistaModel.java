@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "TB_CORRENTISTA")
 public class CorrentistaModel implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -39,10 +40,6 @@ public class CorrentistaModel implements Serializable {
 
 	public void setContaModel(ContaModel contaModel) {
 		this.contaModel = contaModel;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	public String getCpf() {

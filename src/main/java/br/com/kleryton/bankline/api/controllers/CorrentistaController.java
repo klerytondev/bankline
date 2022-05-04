@@ -3,13 +3,18 @@ package br.com.kleryton.bankline.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.kleryton.bankline.api.models.CorrentistaModel;
-import br.com.kleryton.bankline.api.repositories.CorrentistaRespositorie;
+import br.com.kleryton.bankline.api.requestDto.CorrentistaRequestDto;
+import br.com.kleryton.bankline.api.services.CorrentistaService;
 
 @RestController
 @RequestMapping(value = "/v1/bankline")
@@ -18,12 +23,18 @@ import br.com.kleryton.bankline.api.repositories.CorrentistaRespositorie;
 public class CorrentistaController {
 
 	@Autowired
-	private CorrentistaRespositorie correntistaRespositorie;
+	private CorrentistaService correntistaService;
+
+	@PostMapping("/correntistas/add")
+	public ResponseEntity<Object> saveCorrentista(@RequestBody CorrentistaRequestDto correntistaRequestDto) {
+		CorrentistaModel correntistaModel = correntistaService.create(correntistaRequestDto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(correntistaModel);
+	}
 
 	// Read All
 	@GetMapping("/correntistas/all")
-	public List<CorrentistaModel> getAllCorrentistas() {
-		return correntistaRespositorie.findAll();
+	public ResponseEntity<List<CorrentistaModel>> getAllCorrentistaModel() {
+		return ResponseEntity.status(HttpStatus.OK).body(correntistaService.findAll());
 	}
 
 }
