@@ -23,6 +23,14 @@ public class CorrentistaModel implements Serializable {
 	private String nome;
 	
 	private ContaModel contaModel;
+	
+
+	public CorrentistaModel(String cpf, String nome, ContaModel contaModel) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+		this.contaModel = contaModel;
+	}
 
 	public ContaModel getContaModel() {
 		return contaModel;

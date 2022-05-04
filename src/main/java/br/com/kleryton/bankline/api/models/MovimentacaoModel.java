@@ -3,6 +3,7 @@ package br.com.kleryton.bankline.api.models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,12 +22,19 @@ public class MovimentacaoModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private LocalDateTime dataHora;
+	
+	@Column(nullable = false, length = 100)
 	private String descricao;
+	@Column(nullable = false)
 	private Double valor;
 	
 	@Enumerated(EnumType.STRING)
 	private MovimentacaoTipo movimentacaoTipo;
+	
+	@Column(nullable = false, name = "conta_saldo")
+	private Long idConta;
 	
 	public Long getId() {
 		return id;
@@ -50,8 +58,14 @@ public class MovimentacaoModel implements Serializable {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
-	
-	
 
+	public Long getIdConta() {
+		return idConta;
+	}
+
+	public void setIdConta(Long idConta) {
+		this.idConta = idConta;
+	}
+	
+	
 }
