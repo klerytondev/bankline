@@ -36,6 +36,8 @@ public class MovimentacaoModel implements Serializable {
 	@Column(nullable = false, name = "conta_saldo")
 	private Long idConta;
 
+	public MovimentacaoModel() {
+	}
 	public MovimentacaoModel(LocalDateTime dataHora, String descricao, Double valor, MovimentacaoTipo movimentacaoTipo,
 			Long idConta) {
 		super();

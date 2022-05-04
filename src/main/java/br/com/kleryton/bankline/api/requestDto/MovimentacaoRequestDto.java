@@ -12,6 +12,9 @@ public class MovimentacaoRequestDto {
 	private MovimentacaoTipo movimentacaoTipo;
 
 	private Long idConta;
+	
+	public MovimentacaoRequestDto() {
+	}
 
 	public MovimentacaoRequestDto(MovimentacaoModel movimentacaoModel) {
 		this.descricao = movimentacaoModel.getDescricao();
